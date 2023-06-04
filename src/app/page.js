@@ -1,7 +1,8 @@
 "use client"
 import Craousel from '@/components/Craousel'
-import ProductCraousel from '@/components/ProductCraousel'
+import CategoryCarousel from '@/components/CategoryCraousel'
 import SubHeader from '@/components/SubHeader'
+import ProductCarousel from '@/components/ProductCarousel'
 
 
 
@@ -9,10 +10,11 @@ export default function Home(){
 
   return (
     <>
-      <main>
+      <main className='bg-slate-200'>
         <SubHeader/>
         <Craousel/>
-        <ProductCraousel/>
+        <CategoryCarousel/>
+        <ProductCarousel/>
       </main>
     </>
   )

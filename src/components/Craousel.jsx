@@ -10,7 +10,7 @@ import "swiper/css/navigation";
 const Craousel = () => {
   return (
     <>
-      <div className="bg-slate-100 shadow-lg shadow-slate-400 p-2">
+      <div className="bg-slate-200  shadow-slate-400 p-2">
         <Swiper
           navigation={true}
           modules={[Autoplay, Pagination, Navigation]}
