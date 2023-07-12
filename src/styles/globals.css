@@ -16,6 +16,12 @@
   }
 }
 
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
@@ -33,6 +39,10 @@ body::-webkit-scrollbar{
 li,
 a {
   cursor: pointer;
+}
+
+input:disabled{
+  cursor : not-allowed;
 }
 
 .menu {
@@ -80,3 +90,9 @@ a {
 .swiper-button-prev:after{
   border-radius: 0px 6px 6px 0px;
 }
+
+.categoryWall{
+  background-image: url('https://images.pexels.com/photos/3356416/pexels-photo-3356416.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+  background-position: center;
+}
+

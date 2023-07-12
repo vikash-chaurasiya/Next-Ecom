@@ -7,6 +7,8 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import { HiOutlineUserCircle } from "react-icons/hi";
 import { BsBookmarkHeart, BsBoxSeamFill } from "react-icons/bs";
 import { BiLogOut } from "react-icons/bi";
+import { IoIosArrowDown } from "react-icons/io";
+import Notification from "./Notification";
 import "../styles/globals.css";
 import { logout } from "@/toolkit/userSlice";
 
@@ -57,56 +59,68 @@ const Header = () => {
               </button>
             </Link>
           ) : (
-            <div className="relative menuHover">
-              <h6 className="capitalize pt-1">
-                Hi , {user.user.email.split("@", 1)}
-              </h6>
-              <div
-                style={{ top: "40px", left: "-50px" }}
-                className="menu z-50 shadow-sm shadow-slate-500 overflow-hidden absolute bg-white  text-slate-800 px-4 w-44 rounded-sm text-sm"
-              >
-                <ul className="py-2">
-                  <li>
-                    <Link href={"/profile"}>
-                      <span className="flex align-middle gap-2 mt-2 mb-3 border-b-2 border-slate-500 pb-1 hover:text-green-800 hover:font-semibold">
-                        <HiOutlineUserCircle size={16} /> Profile
-                      </span>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href={"/watchlist"}>
-                      <span className="flex align-middle gap-2 mt-2 mb-3 border-b-2 border-slate-500 pb-1 hover:text-green-800 hover:font-semibold">
-                        <BsBookmarkHeart size={16} /> Watchlist
-                      </span>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href={"/order"}>
-                      <span className="flex align-middle gap-2 mt-2 mb-3 border-b-2 border-slate-500 pb-1 hover:text-green-800 hover:font-semibold">
-                        <BsBoxSeamFill size={16} /> Order
-                      </span>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href={"/cart"}>
-                      <span className="flex align-middle gap-2 mt-2 mb-3 border-b-2 border-slate-500 pb-1 hover:text-green-800 hover:font-semibold">
-                        <AiOutlineShoppingCart size={16} /> Cart
-                      </span>
-                    </Link>
-                  </li>
-                  <li
-                    onClick={handleLogout}
-                    className="flex align-middle gap-2 mt-2 mb-2 text-red-600 hover:font-semibold"
-                  >
-                    <BiLogOut size={16} /> Logout
-                  </li>
-                </ul>
+            <div className="flex gap-10">
+              <div className="relative menuHover group h-full">
+                <h6 className="capitalize pt-1 flex items-center gap-1 ">
+                  Hi , {user.user.email.split("@", 1)}{" "}
+                  <span className="text-slate-400 group-hover:rotate-180 transition-all">
+                    {" "}
+                    <IoIosArrowDown />{" "}
+                  </span>
+                </h6>
+                <div
+                  style={{ top: "40px", left: "-50px" }}
+                  className="menu z-50 shadow-sm shadow-slate-500 overflow-hidden absolute bg-white  text-slate-800 px-4 w-44 rounded-sm text-sm"
+                >
+                  <ul className="py-2">
+                    <li>
+                      <Link href={"/profile"}>
+                        <span className="flex align-middle gap-2 mt-2 mb-3 border-b-2 border-slate-500 pb-1 hover:text-green-800 hover:font-semibold">
+                          <HiOutlineUserCircle size={16} /> Profile
+                        </span>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href={"/watchlist"}>
+                        <span className="flex align-middle gap-2 mt-2 mb-3 border-b-2 border-slate-500 pb-1 hover:text-green-800 hover:font-semibold">
+                          <BsBookmarkHeart size={16} /> Wishlist
+                        </span>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href={"/order"}>
+                        <span className="flex align-middle gap-2 mt-2 mb-3 border-b-2 border-slate-500 pb-1 hover:text-green-800 hover:font-semibold">
+                          <BsBoxSeamFill size={16} /> Order
+                        </span>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href={"/cart"}>
+                        <span className="flex align-middle gap-2 mt-2 mb-3 border-b-2 border-slate-500 pb-1 hover:text-green-800 hover:font-semibold">
+                          <AiOutlineShoppingCart size={16} /> Cart
+                        </span>
+                      </Link>
+                    </li>
+                    <li
+                      onClick={handleLogout}
+                      className="flex align-middle gap-2 mt-2 mb-2 text-red-600 hover:font-semibold"
+                    >
+                      <BiLogOut size={16} /> Logout
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div>
+                <Notification />
               </div>
             </div>
           )}
-
           <h3 className="flex align-middle justify-between gap-1 pt-1">
-            <AiOutlineShoppingCart size={22} /> Cart
+            <Link href={"/cart"}>
+              <span className="flex align-middle gap-2 ">
+                <AiOutlineShoppingCart size={22} /> Cart
+              </span>
+            </Link>
           </h3>
         </div>
         {/* <div

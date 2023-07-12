@@ -1,9 +1,10 @@
 import React from "react";
 import ProductCard from "./ProductCard";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { FreeMode, Navigation } from "swiper";
+import Swiper from "swiper";
+// import { Swiper, SwiperSlide } from "swiper/react";
+// import { FreeMode, Navigation } from "swiper";
 
-const ProductCarousel = () => {
+const ProductCarousel = ({ data, isLoading, isSuccess , start, end}) => {
   return (
     <>
       <main className="m-2 pt-1 h-auto bg-white rounded-sm shadow-md">
@@ -21,52 +22,29 @@ const ProductCarousel = () => {
           </div>
         </section>
         <section className="mt-2">
-          <Swiper
-            slidesPerView={6}
-            spaceBetween={8}
-            FreeMode={true}
-            navigation={true}
-            modules={[FreeMode,Navigation]}
-            slidesPerGroup={6}
-            className="mySwiper"
-          >
-            <SwiperSlide>
-              <ProductCard />
-            </SwiperSlide>
-            <SwiperSlide>
-              <ProductCard />
-            </SwiperSlide>
-            <SwiperSlide>
-              <ProductCard />
-            </SwiperSlide>
-            <SwiperSlide>
-              <ProductCard />
-            </SwiperSlide>
-            <SwiperSlide>
-              <ProductCard />
-            </SwiperSlide>
-            <SwiperSlide>
-              <ProductCard />
-            </SwiperSlide>
-            <SwiperSlide>
-              <ProductCard />
-            </SwiperSlide>
-            <SwiperSlide>
-              <ProductCard />
-            </SwiperSlide>
-            <SwiperSlide>
-              <ProductCard />
-            </SwiperSlide>
-            <SwiperSlide>
-              <ProductCard />
-            </SwiperSlide>
-            <SwiperSlide>
-              <ProductCard />
-            </SwiperSlide>
-            <SwiperSlide>
-              <ProductCard />
-            </SwiperSlide>
-          </Swiper>
+          {isLoading ? (
+            "Loading"
+          ) : !isSuccess ? (
+            "Page Error"
+          ) : (
+            <Swiper
+              slidesPerView={6}
+              spaceBetween={8}
+              FreeMode={true}
+              navigation={true}
+              modules={[FreeMode, Navigation]}
+              slidesPerGroup={6}
+              className="mySwiper"
+            >
+              {data.slice(start,end).map((el) => (
+                <div key={el.id}>
+                  {/* <SwiperSlide> */}
+                    <ProductCard data={el}/>
+                  {/* </SwiperSlide> */}
+                </div>
+              ))}
+            </Swiper>
+          )}
         </section>
       </main>
     </>

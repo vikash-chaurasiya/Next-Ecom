@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import Input from "../../components/common/Input";
-import MyButton from "../../components/common/MyButton";
+import Input from "./common/Input";
+import MyButton from "./common/MyButton";
 import { handleChange, handleError } from "@/utils/commonFunc";
 import { emailRegex, phoneRegex } from "@/utils/regex";
 import { useDispatch, useSelector } from "react-redux";
@@ -20,16 +20,10 @@ const Profile = () => {
     email: profile?.email ?? "",
     phone: profile?.phone ?? "",
   });
-  const [enableInput,setEnableInput] = useState({
-    name : true,
-    gender : true,
-    email : true,
-    phone : true
-  })
 
   const [error, setError] = useState("");
 
-  // console.log("enable input",enableInput)
+
 
   const handleValidate = () => {
     let validate = true;
@@ -70,22 +64,13 @@ const Profile = () => {
     }
   };
 
-  const editHandle = (key) => {
-    console.log("clicked")
-    setEnableInput((preVal)=>({
-      ...preVal,
-      [key] : !preVal[key]
-    }))
-    console.log("enble input",enableInput)
-  }
-
   return (
     <>
       <main className="py-6 px-8">
-        {/* <section>
+        <section>
           <div className="flex gap-6 items-center">
             <h6 className="font-lg font-semibold">Personal Information</h6>
-            <p className="text-blue-600 cursor-pointer font-semibold text-sm"  onClick={()=>editHandle('name')}>
+            <p className="text-blue-600 cursor-pointer font-semibold text-sm">
               Edit
             </p>
           </div>
@@ -96,7 +81,6 @@ const Profile = () => {
               placeholder={"First Name"}
               error={error.fname}
               value={personalData.fname}
-              disabled={ personalData.fname ?  enableInput.name : false }
               onChange={(e)=>handleChange(e,setPersonalData,setError)}
             />
             <Input
@@ -104,7 +88,6 @@ const Profile = () => {
               name="lname"
               placeholder={"Last Name"}
               error={error.lname}
-              disabled={personalData.lname ? enableInput.name : false}
               value={personalData.lname}
               onChange={(e)=>handleChange(e,setPersonalData,setError)}
             />
@@ -120,7 +103,6 @@ const Profile = () => {
                   value={"male"}
                   checked={personalData.gender === "male"}
                   onChange={(e)=>handleChange(e,setPersonalData,setError)}
-                disabled={(enableInput.name && personalData.fname ) && true }
                 />
                 <label htmlFor="male" className="text-slate-500 ms-3">
                   Male
@@ -134,7 +116,6 @@ const Profile = () => {
                   value={"female"}
                   checked={personalData.gender === "female"}
                   onChange={(e)=>handleChange(e,setPersonalData,setError)}
-                  disabled={(enableInput.name && personalData.lname ) && true }
                 />
                 <label htmlFor="female" className="text-slate-500 ms-3">
                   Female
@@ -149,7 +130,7 @@ const Profile = () => {
         <section className="mt-10">
           <div className="flex gap-6 items-center">
             <h6 className="font-lg font-semibold">Email Address</h6>
-            <p className="text-blue-600 cursor-pointer font-semibold text-sm" onClick={()=>editHandle("email")}>
+            <p className="text-blue-600 cursor-pointer font-semibold text-sm">
               Edit
             </p>
           </div>
@@ -161,14 +142,13 @@ const Profile = () => {
               value={personalData.email}
               error={error.email}
               onChange={(e)=>handleChange(e,setPersonalData,setError)}
-              disabled={ personalData.email ?  enableInput.email : false }
             />
           </div>
         </section>
         <section className="mt-10">
           <div className="flex gap-6 items-center">
             <h6 className="font-lg font-semibold">Mobile Number</h6>
-            <p className="text-blue-600 cursor-pointer font-semibold text-sm"  onClick={()=>editHandle("phone")}>
+            <p className="text-blue-600 cursor-pointer font-semibold text-sm">
               Edit
             </p>
           </div>
@@ -181,24 +161,12 @@ const Profile = () => {
               error={error.phone}
               maxLength={10}
               onChange={(e)=>handleChange(e,setPersonalData,setError)}
-              disabled={ personalData.phone ?  enableInput.phone : false }
             />
           </div>
         </section>
         <div className="mt-10">
           <MyButton onClick={handleSubmit} />
         </div>
-        <section className="mt-10">
-          <h6 className="text-xl">FAQs</h6>
-          <p className="mt-5 text-md text-slate-700">What happens when I update my email address (or mobile number)?</p>
-          <p className="mt-4 text-md text-slate-700">Your loginWhen will my Flipkart account be updated with the new email address (or mobile number)? email id (or mobile number) changes, likewise. You ll receive all your account related communication on your updated email address (or mobile number).</p>
-          <p className="mt-6 text-slate-700">
-          When will my Flipkart account be updated with the new email address (or mobile number)?
-          </p>
-          <p className="mt-4 text-slate-700">
-            It happens as soon as you confirm the verification code sent to your email (or mobile) and save the changes.
-          </p>
-        </section> */}
       </main>
     </>
   );

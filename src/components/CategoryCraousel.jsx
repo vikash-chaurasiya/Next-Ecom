@@ -1,82 +1,85 @@
 import React from "react";
 import CategoryCard from "./CategoryCard";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { FreeMode,Navigation } from "swiper";
-import "swiper/css";
-import "swiper/css/free-mode";
-import 'swiper/css/navigation'
+import "../styles/globals.css";
+import {Swiper, SwiperSlide} from 'swiper/react'
+import { Navigation,FreeMode } from "swiper";
+import 'swiper/css/bundle'
+// import { Navigation,FreeMode } from "swiper/modules";
+// import {register} from 'swiper/element/bundle';
+// import 'swiper/css'
 
-const CategoryCraousel = () => {
+
+
+
+const CategoryCraousel = ({
+  bgUrl,
+  subHeading,
+  title,
+  data,
+  isLoading,
+  isSuccess,
+  category,
+}) => {
   return (
     <>
-      <main className="mx-2  h-80 bg-white shadow-md rounded-sm">
-        <div className="rounded-s-sm float-left text-center h-full w-64 bg-slate-400 text-slate-900">
-          <h1 className="mt-16 text-3xl">Best of <br /> Electronics</h1>
-          <button className="mt-7 bg-blue-600 text-white shadow-md hover:bg-blue-500 transition-all rounded-sm text-sm w-24 h-10">
-            View All
-          </button>
+      <main className="mx-2 h-96 bg-white shadow-md rounded-sm">
+        <div className="rounded-s-sm float-left text-center h-full w-64  text-slate-900 relative">
+          <div className="z-20 absolute  top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            <h1 className="text-white  font-medium mt-2 text-3xl z-20">
+              Best ofs
+            </h1>
+            <h2 className="text-white font-medium text-3xl mt-2 z-20">
+              {title}
+            </h2>
+            <button className="mt-7 bg-blue-600 text-white shadow-md hover:bg-blue-500 transition-all rounded-sm text-sm w-24 h-10">
+              View All
+            </button>
+          </div>
+
+          <img
+            src={bgUrl}
+            alt="bg"
+            style={{ filter: "blur(1px)" }}
+            className="absolute top-0 left-0 right-0 bottom-0 z-10 h-full w-full"
+          />
         </div>
-        <div className="block  pt-3">
-          <Swiper
-            slidesPerView={5}
-            spaceBetween={8}
-            freeMode={true}
-            navigation={true}
-            modules={[FreeMode,Navigation]}
-            className="mySwiper"
-            slidesPerGroup={5}
-          >
-            <SwiperSlide>
-              <CategoryCard
-                heading={"Premium PowerBank"}
-                subHeading={"From ₹ 799"}
-                lastHeading={"Mi, realme & more"}
-              />
-            </SwiperSlide>
-            <SwiperSlide>
-              <CategoryCard
-                heading={"Premium PowerBank"}
-                subHeading={"From ₹ 799"}
-                lastHeading={"Mi, realme & more"}
-              />
-            </SwiperSlide>
-            <SwiperSlide>
-              <CategoryCard
-                heading={"Premium PowerBank"}
-                subHeading={"From ₹ 799"}
-                lastHeading={"Mi, realme & more"}
-              />
-            </SwiperSlide>
-            <SwiperSlide>
-              <CategoryCard
-                heading={"Premium PowerBank"}
-                subHeading={"From ₹ 799"}
-                lastHeading={"Mi, realme & more"}
-              />
-            </SwiperSlide>
-            <SwiperSlide>
-              <CategoryCard
-                heading={"Premium PowerBank"}
-                subHeading={"From ₹ 799"}
-                lastHeading={"Mi, realme & more"}
-              />
-            </SwiperSlide>
-            <SwiperSlide>
-              <CategoryCard
-                heading={"Premium PowerBank"}
-                subHeading={"From ₹ 799"}
-                lastHeading={"Mi, realme & more"}
-              />
-            </SwiperSlide>
-            <SwiperSlide>
-              <CategoryCard
-                heading={"Premium PowerBank"}
-                subHeading={"From ₹ 799"}
-                lastHeading={"Mi, realme & more"}
-              />
-            </SwiperSlide>
-          </Swiper>
-        </div>
+
+        {isLoading ? (
+          "Loading"
+        ) : !isSuccess ? (
+          "Page Error"
+        ) : (
+          <div className="block  pt-3">
+            <Swiper
+              slidesPerView={5}
+              spaceBetween={8}
+              freeMode={true}
+              navigation={true}
+              modules={[FreeMode, Navigation]}
+              className="mySwiper"
+              slidesPerGroup={5}
+            >
+              {data
+                .filter((item) => item.category === category)
+                .map((el, index) => {
+                  return (
+                    <div key={el.id} className="">
+                      <SwiperSlide>
+                        <CategoryCard
+                          heading={el.title}
+                          imgUrl={el.thumbnail}
+                          price={"From ₹" + el.price}
+                          subHeading={subHeading}
+                          isLoading={isLoading}
+                          isSuccess={isSuccess}
+                        />
+                      </SwiperSlide>
+                    </div>
+                  );
+                })}
+            </Swiper>
+          </div>
+        )}
       </main>
     </>
   );
