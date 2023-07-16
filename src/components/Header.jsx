@@ -70,7 +70,7 @@ const Header = () => {
                 </h6>
                 <div
                   style={{ top: "40px", left: "-50px" }}
-                  className="menu z-50 shadow-sm shadow-slate-500 overflow-hidden absolute bg-white  text-slate-800 px-4 w-44 rounded-sm text-sm"
+                  className="menu z-50 shadow-sm shadow-slate-500 overflow-hidden absolute bg-white  text-slate-800 px-4 w-60 rounded-sm text-sm"
                 >
                   <ul className="py-2">
                     <li>
@@ -81,7 +81,7 @@ const Header = () => {
                       </Link>
                     </li>
                     <li>
-                      <Link href={"/watchlist"}>
+                      <Link href={"/profile/wishlist"}>
                         <span className="flex align-middle gap-2 mt-2 mb-3 border-b-2 border-slate-500 pb-1 hover:text-green-800 hover:font-semibold">
                           <BsBookmarkHeart size={16} /> Wishlist
                         </span>

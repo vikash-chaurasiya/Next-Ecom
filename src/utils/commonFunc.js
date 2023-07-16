@@ -1,3 +1,5 @@
+import { useDispatch } from "react-redux";
+
 export const handleError = (key, errorMsg, setter) => {
   setter((preError) => ({
     ...preError,
@@ -38,3 +40,8 @@ export const priceWithoutOffer = (price,discount) => {
   let res = (100/(100-discount)) * price;
   return res.toFixed(1);
 }
+
+const today = new Date();
+const options = { day: "numeric", month: "long", year: "numeric" };
+const todayDate = today.toLocaleDateString("en-GB", options);
+

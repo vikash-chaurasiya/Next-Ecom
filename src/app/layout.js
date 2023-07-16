@@ -17,10 +17,17 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <Providers>
-          <Header />
-          <SubHeader/>
-          {children}
-          <Footer />
+          <div className="relative">
+            <div className="fixed top-0 left-0 right-0 z-50">
+              <Header />
+            </div>
+            <div className="mt-16">
+            <SubHeader />
+
+            </div>
+            {children}
+            <Footer />
+          </div>
         </Providers>
       </body>
     </html>

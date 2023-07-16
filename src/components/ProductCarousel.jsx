@@ -1,10 +1,15 @@
 import React from "react";
 import ProductCard from "./ProductCard";
-import Swiper from "swiper";
-// import { Swiper, SwiperSlide } from "swiper/react";
-// import { FreeMode, Navigation } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper";
 
-const ProductCarousel = ({ data, isLoading, isSuccess , start, end}) => {
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
+import Link from "next/link";
+
+const ProductCarousel = ({ data, isLoading, isSuccess, start, end }) => {
   return (
     <>
       <main className="m-2 pt-1 h-auto bg-white rounded-sm shadow-md">
@@ -16,9 +21,11 @@ const ProductCarousel = ({ data, isLoading, isSuccess , start, end}) => {
             </h6>
           </div>
           <div>
-            <button className="mt-2 rounded-sm text-white bg-blue-600 hover:bg-blue-500 shadow-md h-10 w-24">
-              View All
-            </button>
+            <Link href={"category/all"}>
+              <button className="mt-2 rounded-sm text-white bg-blue-600 hover:bg-blue-500 shadow-md h-10 w-24">
+                View All
+              </button>
+            </Link>
           </div>
         </section>
         <section className="mt-2">
@@ -30,17 +37,20 @@ const ProductCarousel = ({ data, isLoading, isSuccess , start, end}) => {
             <Swiper
               slidesPerView={6}
               spaceBetween={8}
-              FreeMode={true}
               navigation={true}
-              modules={[FreeMode, Navigation]}
+              modules={[Navigation]}
               slidesPerGroup={6}
               className="mySwiper"
             >
-              {data.slice(start,end).map((el) => (
+              {data.slice(start, end).map((el, index) => (
                 <div key={el.id}>
-                  {/* <SwiperSlide> */}
-                    <ProductCard data={el}/>
-                  {/* </SwiperSlide> */}
+                  <SwiperSlide key={index}>
+                    <ProductCard
+                      data={el}
+                      isLoading={isLoading}
+                      isSuccess={isSuccess}
+                    />
+                  </SwiperSlide>
                 </div>
               ))}
             </Swiper>

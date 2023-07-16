@@ -7,12 +7,14 @@ import {userSlice} from "./userSlice";
 import { productApi } from "./apiSlice";
 import { profileSlice } from "./userdetailsSlice";
 import { watchlistSlice } from "./watchlistSlice";
-import {cartSlice} from "./cartSlice";
+import { notifySlice } from "./notifySlice";
+import { cart2Slice } from "./cartSlice";
 
 
 const persistConfig = {
   key: "root",
   storage,
+  // watchlist :["watchlistSlice"]
 };
 
 
@@ -20,7 +22,8 @@ const rootReducer = combineReducers({
   user : persistReducer(persistConfig, userSlice.reducer),
   profile : persistReducer(persistConfig,profileSlice.reducer),
   watchlist :persistReducer(persistConfig,watchlistSlice.reducer),
-  cart :persistReducer(persistConfig,cartSlice.reducer),
+  notification : persistReducer(persistConfig,notifySlice.reducer),
+  cartData : persistReducer(persistConfig,cart2Slice.reducer),
   [productApi.reducerPath]: productApi.reducer,
 })
 

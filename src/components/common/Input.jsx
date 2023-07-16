@@ -12,7 +12,7 @@ const Input = ({ type, placeholder, name, value, error, maxLength,onChange,disab
           maxLength={maxLength}
           onChange={onChange}
           disabled ={disabled}
-          className="border-2 py-3 px-5 w-72 rounded-sm"
+          className="border-2 py-3 px-5 w-72 rounded-sm text-black"
         />
         <p className="absolute text-red-500 text-xs ms-1 mt-1">{error}</p>
       </div>

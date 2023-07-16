@@ -53,7 +53,7 @@ const Wishlist = () => {
       stock : item.stock,
       thumbnail : item.thumbnail,
       qty : qty[item.id]?? 1,
-      date : todayDate,
+      date : today,
     };
     const notify = {
       title : item.title,
@@ -64,9 +64,9 @@ const Wishlist = () => {
     dispatch(setCartData(sendData));
     dispatch(updateDiscount())
     dispatch(updateTotalPrice())
-    dispatch(setNotification(notify))
+    // dispatch(setNotification(notify))
 
-    console.log("data send ",sendData);
+    console.log(sendData);
   };
 
   useEffect(() => {
@@ -79,7 +79,7 @@ const Wishlist = () => {
 
   return (
     <>
-      <main className="ms-32 mt-10 min-h-screen min-w-full bg-gray-400">
+      <main className="text-white ps-10 pt-8 min-h-screen min-w-full bg-gray-900 flex flex-col gap-8 pb-10">
         <div className="h-full w-full ">
           <h2 className="text-3xl font-semibold">My Wishlist</h2>
         </div>
@@ -97,7 +97,7 @@ const Wishlist = () => {
                 return (
                   <div
                     key={index}
-                    className="max-w-4xl h-60  my-10 flex overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800"
+                    className="max-w-4xl h-60 flex overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800"
                   >
                     <div className="h-60 w-2/6 bg-red-600">
                       <img

@@ -20,7 +20,7 @@ const Address = () => {
 
   return (
     <>
-      <main className='px-8 py-6'>
+      <main className='px-8 py-6 bg-gray-900 text-white h-full'>
         <section>
           <div className='flex gap-4 items-center mb-4'>
             <div>

@@ -1,5 +1,6 @@
 import React from "react";
 import CardLoading from "./common/loading";
+import Link from "next/link";
 
 const CategoryCard = ({
   imgUrl,
@@ -8,6 +9,7 @@ const CategoryCard = ({
   price,
   isLoading,
   isSuccess,
+  id,
 }) => {
   return (
     <>
@@ -18,6 +20,7 @@ const CategoryCard = ({
           "Server error"
         ) : (
           <>
+          <Link href={`product/${id}`}>
             <div className="h-52 rounded-sm">
               <img src={imgUrl} alt="thumbnails" className="h-full w-full" />
             </div>
@@ -26,6 +29,7 @@ const CategoryCard = ({
               <h6 className="text-green-700 my-3">{price}</h6>
               <h6 className="text-sm text-slate-500">{subHeading}</h6>
             </div>
+          </Link>
           </>
         )}
       </main>

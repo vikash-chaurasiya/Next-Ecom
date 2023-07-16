@@ -35,7 +35,7 @@ const PanNumber = () => {
 
   return (
     <>
-      <main className="px-8 py-6">
+      <main className="px-8 py-6 bg-gray-900 text-white h-full">
         <section className="mb-14">
           <div className="flex gap-6 items-center mb-4">
             <h6 className="font-lg font-semibold">Pan Number</h6>

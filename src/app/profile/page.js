@@ -81,8 +81,8 @@ const Profile = () => {
 
   return (
     <>
-      <main className="py-6 px-8">
-        {/* <section>
+      <main className="py-6 px-8 bg-gray-900 text-white">
+        <section>
           <div className="flex gap-6 items-center">
             <h6 className="font-lg font-semibold">Personal Information</h6>
             <p className="text-blue-600 cursor-pointer font-semibold text-sm"  onClick={()=>editHandle('name')}>
@@ -110,7 +110,7 @@ const Profile = () => {
             />
           </div>
           <div className="mt-5">
-            <h6 className="text-sm">Your Gender</h6>
+            <h6 className="text-base">Your Gender</h6>
             <div className="flex gap-8">
               <div className="mt-3">
                 <input
@@ -190,15 +190,15 @@ const Profile = () => {
         </div>
         <section className="mt-10">
           <h6 className="text-xl">FAQs</h6>
-          <p className="mt-5 text-md text-slate-700">What happens when I update my email address (or mobile number)?</p>
-          <p className="mt-4 text-md text-slate-700">Your loginWhen will my Flipkart account be updated with the new email address (or mobile number)? email id (or mobile number) changes, likewise. You ll receive all your account related communication on your updated email address (or mobile number).</p>
-          <p className="mt-6 text-slate-700">
+          <p className="mt-5 text-md text-slate-500">What happens when I update my email address (or mobile number)?</p>
+          <p className="mt-4 text-md text-slate-500">Your loginWhen will my Flipkart account be updated with the new email address (or mobile number)? email id (or mobile number) changes, likewise. You ll receive all your account related communication on your updated email address (or mobile number).</p>
+          <p className="mt-6 text-slate-500">
           When will my Flipkart account be updated with the new email address (or mobile number)?
           </p>
-          <p className="mt-4 text-slate-700">
+          <p className="mt-4 text-slate-500 mb-8">
             It happens as soon as you confirm the verification code sent to your email (or mobile) and save the changes.
           </p>
-        </section> */}
+        </section>
       </main>
     </>
   );

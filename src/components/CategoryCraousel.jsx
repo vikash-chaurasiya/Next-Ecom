@@ -3,11 +3,12 @@ import CategoryCard from "./CategoryCard";
 import "../styles/globals.css";
 import {Swiper, SwiperSlide} from 'swiper/react'
 import { Navigation,FreeMode } from "swiper";
-import 'swiper/css/bundle'
-// import { Navigation,FreeMode } from "swiper/modules";
-// import {register} from 'swiper/element/bundle';
-// import 'swiper/css'
 
+import 'swiper/css'
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+import Link from "next/link";
 
 
 
@@ -19,6 +20,7 @@ const CategoryCraousel = ({
   isLoading,
   isSuccess,
   category,
+  link,
 }) => {
   return (
     <>
@@ -31,9 +33,11 @@ const CategoryCraousel = ({
             <h2 className="text-white font-medium text-3xl mt-2 z-20">
               {title}
             </h2>
+            <Link href={`category/${link}`}>
             <button className="mt-7 bg-blue-600 text-white shadow-md hover:bg-blue-500 transition-all rounded-sm text-sm w-24 h-10">
               View All
             </button>
+            </Link>
           </div>
 
           <img
@@ -64,8 +68,9 @@ const CategoryCraousel = ({
                 .map((el, index) => {
                   return (
                     <div key={el.id} className="">
-                      <SwiperSlide>
+                      <SwiperSlide key={index}>
                         <CategoryCard
+                          id={el.id}
                           heading={el.title}
                           imgUrl={el.thumbnail}
                           price={"From ₹" + el.price}

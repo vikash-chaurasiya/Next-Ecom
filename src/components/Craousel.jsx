@@ -1,31 +1,29 @@
 "use client";
-import React from "react";
-import { Autoplay,Navigation, Pagination } from "swiper";
-import {Swiper, SwiperSlide} from 'swiper/react'
-import "../styles/globals.css";
-import 'swiper/css';
-import 'swiper/css/autoplay'
-import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
-import 'swiper/css/navigation';
 
+import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Autoplay } from "swiper";
+
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
 
 const Craousel = () => {
-
-
-
   return (
     <>
       <div className="bg-slate-200  shadow-slate-400 p-2">
         <Swiper
+          // slidesPerView={1}
+          spaceBetween={0}
           navigation={true}
-          modules={[Autoplay,Pagination, Navigation]}
+          centeredSlides={true}
+          modules={[Navigation,Autoplay]}
           autoplay={{
             delay: 3000,
             disableOnInteraction: false,
           }}
           className="mySwiper"
-          loop={true}
         >
           <SwiperSlide>
             <div className="bannerImg">
@@ -42,11 +40,11 @@ const Craousel = () => {
               <img src="/banner3.jpg" alt="banner" />
             </div>
           </SwiperSlide>
-          <div className="swiper-wrapper">
+          <SwiperSlide className="swiper-wrapper">
             <div className="bannerImg">
               <img src="/banner4.jpg" alt="banner" />
             </div>
-          </div>
+          </SwiperSlide>
           <SwiperSlide>
             <div className="bannerImg">
               <img src="/banner5.jpg" alt="banner" />

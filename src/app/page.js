@@ -27,18 +27,19 @@ export default function Home() {
     <>
       <main className="bg-slate-200">
         <Craousel />
-        {/* <CategoryCarousel
+        <CategoryCarousel
           title="Home Decoration"
           data={productData}
           isLoading={isLoading}
           isSuccess={isSuccess}
           category={"lighting"}
           subHeading={"Rgb, Pot & more"}
+          link={'home-decoration'}
           bgUrl={
             "https://images.pexels.com/photos/3356416/pexels-photo-3356416.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
           }
-        /> */}
-        {/* <ProductCarousel
+        />
+        <ProductCarousel
           data={randomData}
           isLoading={isLoading}
           isSuccess={isSuccess}
@@ -51,6 +52,7 @@ export default function Home() {
           isLoading={isLoading}
           isSuccess={isSuccess}
           category={"womens-bags"}
+          link={'womens-bags'}
           subHeading={"Levis, Exotic & more"}
           bgUrl={
             "https://images.pexels.com/photos/2081199/pexels-photo-2081199.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
@@ -68,6 +70,7 @@ export default function Home() {
           data={productData}
           isLoading={isLoading}
           isSuccess={isSuccess}
+          link={'mens-shirts'}
           subHeading={"Hrx, Nike & more"}
           category={"mens-shirts"}
           bgUrl={
@@ -86,6 +89,7 @@ export default function Home() {
           data={productData}
           isLoading={isLoading}
           isSuccess={isSuccess}
+          link={'sunglasses'}
           subHeading={"Gucci, Fastrack & more"}
           category={"sunglasses"}
           bgUrl={
@@ -104,6 +108,7 @@ export default function Home() {
           data={productData}
           isLoading={isLoading}
           isSuccess={isSuccess}
+          link={'womens-dresses'}
           subHeading={"Tops, Sweater & more"}
           category={"tops"}
           bgUrl={
@@ -116,7 +121,7 @@ export default function Home() {
           isSuccess={isSuccess}
           start = {40}
           end = {50}
-        /> */}
+        />
       </main>
     </>
   );
