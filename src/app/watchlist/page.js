@@ -20,7 +20,7 @@ const Wishlist = () => {
   const [products, setProducts] = useState([]);
 
 
-  console.log("this is cart data",cart)
+  console.log("this is wishlist id data", setProductId)
 
 
   const [qty, setQty] = useState({});

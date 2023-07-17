@@ -24,7 +24,7 @@ const CategoryCraousel = ({
 }) => {
   return (
     <>
-      <main className="mx-2 h-96 bg-white shadow-md rounded-sm">
+      <main className="mx-2 h-96 bg-gray-900 shadow-md rounded-sm">
         <div className="rounded-s-sm float-left text-center h-full w-64  text-slate-900 relative">
           <div className="z-20 absolute  top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
             <h1 className="text-white  font-medium mt-2 text-3xl z-20">

@@ -12,10 +12,10 @@ import Link from "next/link";
 const ProductCarousel = ({ data, isLoading, isSuccess, start, end }) => {
   return (
     <>
-      <main className="m-2 pt-1 h-auto bg-white rounded-sm shadow-md">
-        <section className="px-8 py-3 text-slate-800 flex justify-between align-middle border-b-2">
+      <main className="m-2 pt-1 h-auto  bg-gray-700 rounded-sm shadow-md">
+        <section className="px-8 py-3 text-slate-800 flex justify-between align-middle border-gray-600 border-b-2">
           <div className="">
-            <h2 className="font-semibold text-xl">Suggested Items</h2>
+            <h2 className="font-semibold text-xl text-white">Suggested Items</h2>
             <h6 className="font-medium text-sm mt-1 text-slate-400">
               Based On Your Activity
             </h6>

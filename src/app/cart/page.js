@@ -1,7 +1,7 @@
 "use client";
 import { useGetAllProductQuery } from "@/toolkit/apiSlice";
-import React, { useState } from "react";
-import { priceWithoutOffer } from "@/utils/commonFunc";
+import React, { useEffect, useState } from "react";
+import { priceWithoutOffer, shuffleArray } from "@/utils/commonFunc";
 import { useDispatch, useSelector } from "react-redux";
 import {
   removeCartItem,
@@ -10,6 +10,7 @@ import {
   updateTotalPrice,
 } from "@/toolkit/cartSlice";
 import { AiOutlineSafety } from "react-icons/ai";
+import ProductCard from "@/components/ProductCard";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -20,13 +21,11 @@ const Cart = () => {
   );
   const { data, isLoading, isSuccess } = useGetAllProductQuery(100);
 
+  const [allProducts, setAllProducts] = useState([]);
 
-  console.log("data", cartDetails);
+  function deliveryDate(apiDate) {
 
-  function deliveryDate(apiDate){
-
-    let random = Math.floor(Math.random()*9) +4;
-
+    let random = Math.floor(Math.random() * 9) + 4;
     const parseDate = new Date(apiDate);
     parseDate.setDate(parseDate.getDate() + random);
     const options = { day: "numeric", month: "long", year: "numeric" };
@@ -34,7 +33,6 @@ const Cart = () => {
 
     return futureDateString;
   }
-
 
   const removeProduct = (id) => {
     console.log("id", id);
@@ -51,20 +49,54 @@ const Cart = () => {
     }
   };
 
+  useEffect(() => {
+    if (isSuccess) {
+      const shuffleData = shuffleArray(data.products);
+      setAllProducts(shuffleData);
+    }
+  }, [data]);
+
   return (
     <>
-      <main className="grid min-h-screen grid-cols-3 mx-20">
-        <section className="col-span-2">
-          <div>
-            {isLoading ? (
-              "loading"
-            ) : !isSuccess ? (
-              "Page error"
-            ) : (
-              <>
+      <main className="min-h-screen mx-20">
+        {isLoading ? (
+          "loading"
+        ) : !isSuccess ? (
+          "Page error"
+        ) : !cartDetails.length ? (
+          <>
+            <div className="flex justify-center items-center flex-col w-full h-96 mt-14">
+              <img
+                width="250"
+                height="250"
+                src="https://img.icons8.com/nolan/256/shopping-cart.png"
+                alt="shopping-cart"
+              />
+
+              <h2 className="mt-3 mb-3 text-xl text-gray-400">Your <span className="text-yellow-500">Cart</span>  is empty !</h2>
+              <p className="text-slate-400">Explore our wide selection and find something you like</p>
+            </div>
+            <section className="pb-10">
+              <div className="my-10 bg-red-950 text-white py-4 ps-5 rounded-lg">
+                <h2 className="font-medium text-xl">
+                  Explore Our Trendiong Products 🔥
+                </h2>
+              </div>
+              <div className="grid grid-cols-4  gap-10">
+                {allProducts.slice(0, 8).map((el, index) => (
+                  <div className="" key={index}>
+                    <ProductCard data={el} isLoading={isLoading} />
+                  </div>
+                ))}
+              </div>
+            </section>
+          </>
+        ) : (
+          <>
+            <div className="grid grid-cols-3">
+              <section className="col-span-2">
                 {cartDetails?.length &&
                   cartDetails.map((product, index) => {
-                    // const currentQty = qty[product.id] || product.qty;
                     return (
                       <div
                         key={index}
@@ -106,8 +138,20 @@ const Cart = () => {
                             <div className="text-slate-400 text-sm mt-3">
                               <p>
                                 Delivery by &nbsp;
-                                <span className="text-green-600">{deliveryDate(product.date)}</span>
-                                <span> | {product.price > 700 ? <span className="text-green-500">Free <s className="text-slate-500">120</s> </span> : <span>120</span>}</span>
+                                <span className="text-green-600">
+                                  {deliveryDate(product.date)}
+                                </span>
+                                <span>
+                                  {" "}
+                                  |{" "}
+                                  {product.price > 700 ? (
+                                    <span className="text-green-500">
+                                      Free <s className="text-slate-500">120</s>{" "}
+                                    </span>
+                                  ) : (
+                                    <span>120</span>
+                                  )}
+                                </span>
                               </p>
                             </div>
                           </div>
@@ -171,7 +215,7 @@ const Cart = () => {
                               {/* <button
                                 className="px-2 h-9 py-1 text-xs font-semibold text-slate-700 tracking-widest uppercase transition-colors duration-300 transform bg-slate-300 rounded hover:text-black hover:bg-slate-400 focus:bg-gray-400 focus:outline-none"
                                 onClick={() => removeProduct(product.id)}
-                              >
+                                >
                                 Save for latter
                               </button> */}
                             </div>
@@ -180,48 +224,58 @@ const Cart = () => {
                       </div>
                     );
                   })}
-              </>
-            )}
-          </div>
-        </section>
-        <aside className="col-span-1">
-          <div className="bg-gray-800 w-full mt-10 rounded-md">
-            <div className="border-b-2 border-b-slate-500 py-4 px-8 text-xl uppercase text-slate-300">
-              <h2>Price Details</h2>
+              </section>
+              <aside className="col-span-1">
+                <div className="sticky top-20">
+                  <div className="bg-gray-800 w-full mt-10 rounded-md ">
+                    <div className="border-b-2 border-b-slate-500 py-4 px-8 text-xl uppercase text-slate-300">
+                      <h2>Price Details</h2>
+                    </div>
+                    <div className="pt-6 pb-5 px-8 flex justify-between">
+                      <p>Price</p>
+                      <p>₹ {cartTotalPrice}</p>
+                    </div>
+                    <div className="pb-6 px-8 flex justify-between">
+                      <p>Discount</p>
+                      <p className="text-green-500">
+                        - &nbsp; ₹ {cartTotalDiscount}
+                      </p>
+                    </div>
+                    <div className="pb-6 mx-8 flex justify-between border-b-2 border-b-slate-600 border-dashed">
+                      <p>Delivery Charge</p>
+                      {cartTotalPrice > 600 ? (
+                        <p className="text-green-500">Free</p>
+                      ) : (
+                        <p>₹ 120</p>
+                      )}
+                    </div>
+                    <div className="pb-6 mx-8 flex justify-between text-xl mt-7 border-b-2 border-b-slate-600 border-dashed">
+                      <h2>Total Amount</h2>
+                      <h2>₹ {cartTotalPrice - cartTotalDiscount}</h2>
+                    </div>
+                    <div className="py-4 px-8 text-green-500 font-medium">
+                      <p> You will save ₹ 3434 in this order</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-3 mt-8">
+                    <p className="text-slate-500">
+                      <AiOutlineSafety size={34} />
+                    </p>{" "}
+                    <p className="text-slate-500">
+                      Safe and Secure Payments.Easy returns.100% Authentic
+                      products.
+                    </p>
+                  </div>
+                  <div className="pb-10">
+                    <button className="uppercase w-full h-12 bg-green-500 hover:bg-green-600 text-white text-lg mt-7 tracking-wider rounded-md font-medium">
+                      Buy Now
+                    </button>
+                  </div>
+                </div>
+              </aside>
             </div>
-            <div className="pt-6 pb-5 px-8 flex justify-between">
-              <p>Price</p>
-              <p>₹ {cartTotalPrice}</p>
-            </div>
-            <div className="pb-6 px-8 flex justify-between">
-              <p>Discount</p>
-              <p className="text-green-500">- &nbsp; ₹ {cartTotalDiscount}</p>
-            </div>
-            <div className="pb-6 mx-8 flex justify-between border-b-2 border-b-slate-600 border-dashed">
-              <p>Delivery Charge</p>
-              {cartTotalPrice > 600 ? (
-                <p className="text-green-500">Free</p>
-              ) : (
-                <p>₹ 120</p>
-              )}
-            </div>
-            <div className="pb-6 mx-8 flex justify-between text-xl mt-7 border-b-2 border-b-slate-600 border-dashed">
-              <h2>Total Amount</h2>
-              <h2>₹ {cartTotalPrice - cartTotalDiscount}</h2>
-            </div>
-            <div className="py-4 px-8 text-green-500 font-medium">
-              <p> You will save ₹ 3434 in this order</p>
-            </div>
-          </div>
-          <div className="flex gap-3 mt-8">
-            <p className="text-slate-500">
-              <AiOutlineSafety size={34} />
-            </p>{" "}
-            <p className="text-slate-500">
-              Safe and Secure Payments.Easy returns.100% Authentic products.
-            </p>
-          </div>
-        </aside>
+          </>
+        )}
       </main>
     </>
   );

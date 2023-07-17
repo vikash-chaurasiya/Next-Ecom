@@ -13,7 +13,7 @@ const CategoryCard = ({
 }) => {
   return (
     <>
-      <main className="mx-2 border shadow-sm h-full rounded-sm">
+      <main className="mx-2 bg-slate-100 border shadow-sm h-full rounded-sm">
         {isLoading ? (
           <CardLoading />
         ) : !isSuccess ? (

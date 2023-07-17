@@ -1,4 +1,4 @@
-import { setWatchlist } from "@/toolkit/watchlistSlice";
+import { removeWishlistId, setWatchlist } from "@/toolkit/watchlistSlice";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
@@ -16,7 +16,6 @@ const ProductCard = ({ data, isLoading }) => {
   const [heart, setHeart] = useState(false);
   const [watchlistId, setWatchlistId] = useState([]);
 
-  // console.log("all product",watchlistId)
 
   const randomNum = () => {
     let random = Math.floor(Math.random() * 900) + 10;
@@ -24,12 +23,17 @@ const ProductCard = ({ data, isLoading }) => {
   };
 
   const priceWithoutOffer = (price, discount) => {
-    let res = (100 / (100 - discount)) * price;
-    return res.toFixed(1);
+    let result = (100 / (100 - discount)) * price;
+    return result.toFixed(1);
   };
 
   const addToWachlist = (id) => {
-    dispatch(setWatchlist(id));
+    if (watchlistId.includes(id)){
+      dispatch(removeWishlistId(id))
+    }else{
+      dispatch(setWatchlist(id));
+    }
+    console.log("all product",watchlistId)
   };
 
   const today = new Date();
@@ -74,7 +78,7 @@ const ProductCard = ({ data, isLoading }) => {
       {isLoading ? (
         <CardLoading />
       ) : (
-        <main className="text-black dark:bg-gray-800 bg-white text-white mx-2 shadow-md h-full rounded-md">
+        <main className="dark:bg-gray-900 bg-white text-white mx-2 shadow-md h-full rounded-md">
           <div>
             <div className="h-56 w-full rounded-md object-fill relative">
               <div
@@ -83,7 +87,7 @@ const ProductCard = ({ data, isLoading }) => {
               >
                 <div
                   className={`heart ${
-                    watchlistId.includes(data.id) || heart ? "is-active" : ""
+                    watchlistId.includes(data.id) ? "is-active" : ""
                   }`}
                   onClick={() => setHeart(!heart)}
                 ></div>
@@ -120,10 +124,10 @@ const ProductCard = ({ data, isLoading }) => {
                 </span>
               </h6>
             </div>
-            <div className="m-2 text-center mt-auto">
+            <div className="m-2 text-center mt-auto pb-4">
               <button
                 onClick={() => addToCart(data)}
-                className="w-10/12 rounded-md center hover:bg-blue-500 bg-blue-600 text-white py-3 "
+                className="w-10/12 rounded-md center hover:bg-green-500 bg-green-600 text-white py-3 "
               >
                 Add To Cart
               </button>
