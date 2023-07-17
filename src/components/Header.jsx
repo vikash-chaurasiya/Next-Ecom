@@ -217,7 +217,7 @@ const Header = () => {
               <span className="flex align-middle gap-2 ">
                 <AiOutlineShoppingCart size={22} /> Cart
               </span>
-              {cartDetails.length && (
+              {!!cartDetails?.length && (
                 <div className="text-xs absolute p-1  -top-2 right-9 text-white font-medium flex justify-center items-center rounded-full bg-red-500 w-4 h-4">
                   {cartDetails.length}
                 </div>
