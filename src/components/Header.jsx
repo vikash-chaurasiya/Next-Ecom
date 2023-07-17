@@ -14,7 +14,10 @@ import { logout } from "@/toolkit/userSlice";
 
 const Header = () => {
   const user = useSelector((state) => state.user);
+  const cartDetails = useSelector((state) => state.cartData.cartData);
   const dispatch = useDispatch();
+
+  const [active, setActive] = useState(false);
 
   const handleLogout = () => {
     dispatch(logout());
@@ -22,7 +25,7 @@ const Header = () => {
 
   return (
     <>
-      <div className="flex  px-20 py-4 justify-between shadow-xl bg-gray-900">
+      <div className="flex px-20 py-3 justify-between shadow-xl bg-gray-900">
         <Link href={"/"}>
           <div className="logo flex gap-3 cursor-pointer pt-1">
             <Image src="/flipkart-icon.svg" alt="logo" width={24} height={80} />
@@ -59,122 +62,169 @@ const Header = () => {
               </button>
             </Link>
           ) : (
-            <div className="flex gap-10">
-              <div className="relative menuHover group h-full">
-                <h6 className="capitalize pt-1 flex items-center gap-1 ">
-                  Hi , {user.user.email.split("@", 1)}{" "}
-                  <span className="text-slate-400 group-hover:rotate-180 transition-all">
-                    {" "}
-                    <IoIosArrowDown />{" "}
-                  </span>
-                </h6>
-                <div
-                  style={{ top: "40px", left: "-50px" }}
-                  className="menu z-50 shadow-sm shadow-slate-500 overflow-hidden absolute bg-white  text-slate-800 px-4 w-60 rounded-sm text-sm"
+            <div className="relative inline-block ">
+              <button
+                onClick={() => setActive(!active)}
+                className="relative z-10 flex items-center p-2 text-sm text-gray-600 bg-white border border-transparent rounded-md  dark:focus:ring-opacity-40  dark:text-white dark:bg-gray-800 focus:outline-none"
+              >
+                <span className="mx-1">
+                  Hi, {user.user.email.split("@", 1)}
+                </span>
+                <svg
+                  className="w-5 h-5 mx-1"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
                 >
-                  <ul className="py-2">
-                    <li>
-                      <Link href={"/profile"}>
-                        <span className="flex align-middle gap-2 mt-2 mb-3 border-b-2 border-slate-500 pb-1 hover:text-green-800 hover:font-semibold">
-                          <HiOutlineUserCircle size={16} /> Profile
-                        </span>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href={"/profile/wishlist"}>
-                        <span className="flex align-middle gap-2 mt-2 mb-3 border-b-2 border-slate-500 pb-1 hover:text-green-800 hover:font-semibold">
-                          <BsBookmarkHeart size={16} /> Wishlist
-                        </span>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href={"/order"}>
-                        <span className="flex align-middle gap-2 mt-2 mb-3 border-b-2 border-slate-500 pb-1 hover:text-green-800 hover:font-semibold">
-                          <BsBoxSeamFill size={16} /> Order
-                        </span>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href={"/cart"}>
-                        <span className="flex align-middle gap-2 mt-2 mb-3 border-b-2 border-slate-500 pb-1 hover:text-green-800 hover:font-semibold">
-                          <AiOutlineShoppingCart size={16} /> Cart
-                        </span>
-                      </Link>
-                    </li>
-                    <li
-                      onClick={handleLogout}
-                      className="flex align-middle gap-2 mt-2 mb-2 text-red-600 hover:font-semibold"
+                  <path
+                    d="M12 15.713L18.01 9.70299L16.597 8.28799L12 12.888L7.40399 8.28799L5.98999 9.70199L12 15.713Z"
+                    fill="currentColor"
+                  ></path>
+                </svg>
+              </button>
+
+              {active && (
+                <div className="absolute right-0 z-20 w-56 py-2 mt-2 overflow-hidden origin-top-right bg-white rounded-md shadow-xl dark:bg-gray-800">
+                  <Link
+                    href="#"
+                    className="flex items-center p-3 -mt-2 text-sm text-gray-600 transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
+                  >
+                    <img
+                      className="flex-shrink-0 object-cover mx-1 rounded-full w-9 h-9"
+                      src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/profile-pic-male_4811a1.svg"
+                      alt="jane avatar"
+                    />
+                    <div className="mx-1">
+                      <h1 className="text-sm font-semibold text-gray-700 dark:text-gray-200">
+                        {user.user.email.split("@", 1)}
+                      </h1>
+                      <p className="text-sm text-gray-500 dark:text-gray-400">
+                        {user.user.email}
+                      </p>
+                    </div>
+                  </Link>
+
+                  <hr className="border-gray-200 dark:border-gray-700 " />
+
+                  <Link
+                    href="/profile"
+                    onClick={() => setActive(!active)}
+                    className="flex items-center p-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
+                  >
+                    <svg
+                      className="w-5 h-5 mx-1"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
                     >
-                      <BiLogOut size={16} /> Logout
-                    </li>
-                  </ul>
+                      <path
+                        d="M7 8C7 5.23858 9.23858 3 12 3C14.7614 3 17 5.23858 17 8C17 10.7614 14.7614 13 12 13C9.23858 13 7 10.7614 7 8ZM12 11C13.6569 11 15 9.65685 15 8C15 6.34315 13.6569 5 12 5C10.3431 5 9 6.34315 9 8C9 9.65685 10.3431 11 12 11Z"
+                        fill="currentColor"
+                      ></path>
+                      <path
+                        d="M6.34315 16.3431C4.84285 17.8434 4 19.8783 4 22H6C6 20.4087 6.63214 18.8826 7.75736 17.7574C8.88258 16.6321 10.4087 16 12 16C13.5913 16 15.1174 16.6321 16.2426 17.7574C17.3679 18.8826 18 20.4087 18 22H20C20 19.8783 19.1571 17.8434 17.6569 16.3431C16.1566 14.8429 14.1217 14 12 14C9.87827 14 7.84344 14.8429 6.34315 16.3431Z"
+                        fill="currentColor"
+                      ></path>
+                    </svg>
+
+                    <span className="mx-1">view profile</span>
+                  </Link>
+
+                  <Link
+                    href="/profile/wishlist"
+                    onClick={() => setActive(!active)}
+                    className="flex items-center p-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
+                  >
+                    <span className="ml-1">
+                      <BsBookmarkHeart size={18} />
+                    </span>
+
+                    <span className="mx-3">Wishlist</span>
+                  </Link>
+
+                  <Link
+                    href="/order"
+                    onClick={() => setActive(!active)}
+                    className="flex items-center p-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
+                  >
+                    <span className="ml-2">
+                      <BsBoxSeamFill size={16} />
+                    </span>
+
+                    <span className="mx-3">Orders</span>
+                  </Link>
+
+                  <Link
+                    href="/cart"
+                    onClick={() => setActive(!active)}
+                    className="flex items-center p-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
+                  >
+                    <span className="ml-2">
+                      <AiOutlineShoppingCart size={19} />
+                    </span>
+
+                    <span className="mx-3">Cart</span>
+                  </Link>
+
+                  <hr className="border-gray-200 dark:border-gray-700 " />
+                  <Link
+                    href="/support"
+                    className="flex items-center p-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
+                  >
+                    <svg
+                      className="w-5 h-5 mx-1"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M12 22C6.47967 21.9939 2.00606 17.5203 2 12V11.8C2.10993 6.30452 6.63459 1.92794 12.1307 2.00087C17.6268 2.07379 22.0337 6.56887 21.9978 12.0653C21.9619 17.5618 17.4966 21.9989 12 22ZM11.984 20H12C16.4167 19.9956 19.9942 16.4127 19.992 11.996C19.9898 7.57928 16.4087 3.99999 11.992 3.99999C7.57528 3.99999 3.99421 7.57928 3.992 11.996C3.98979 16.4127 7.56729 19.9956 11.984 20ZM13 18H11V16H13V18ZM13 15H11C10.9684 13.6977 11.6461 12.4808 12.77 11.822C13.43 11.316 14 10.88 14 9.99999C14 8.89542 13.1046 7.99999 12 7.99999C10.8954 7.99999 10 8.89542 10 9.99999H8V9.90999C8.01608 8.48093 8.79333 7.16899 10.039 6.46839C11.2846 5.76778 12.8094 5.78493 14.039 6.51339C15.2685 7.24184 16.0161 8.57093 16 9.99999C15.9284 11.079 15.3497 12.0602 14.44 12.645C13.6177 13.1612 13.0847 14.0328 13 15Z"
+                        fill="currentColor"
+                      ></path>
+                    </svg>
+
+                    <span className="mx-1">Help</span>
+                  </Link>
+                  <div
+                    href="#"
+                    onClick={handleLogout}
+                    className="flex items-center p-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
+                  >
+                    <svg
+                      className="w-5 h-5 mx-1"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M19 21H10C8.89543 21 8 20.1046 8 19V15H10V19H19V5H10V9H8V5C8 3.89543 8.89543 3 10 3H19C20.1046 3 21 3.89543 21 5V19C21 20.1046 20.1046 21 19 21ZM12 16V13H3V11H12V8L17 12L12 16Z"
+                        fill="currentColor"
+                      ></path>
+                    </svg>
+
+                    <span className="mx-1">Sign Out</span>
+                  </div>
                 </div>
-              </div>
-              <div>
-                <Notification />
-              </div>
+              )}
             </div>
           )}
-          <h3 className="flex align-middle justify-between gap-1 pt-1">
+          <div className="ml-10">
+            <Notification />
+          </div>
+
+          <h3 className="flex align-middle justify-between gap-1 pt-1 relative">
             <Link href={"/cart"}>
               <span className="flex align-middle gap-2 ">
                 <AiOutlineShoppingCart size={22} /> Cart
               </span>
+              {cartDetails.length && (
+                <div className="text-xs absolute p-1  -top-2 right-9 text-white font-medium flex justify-center items-center rounded-full bg-red-500 w-4 h-4">
+                  {cartDetails.length}
+                </div>
+              )}
             </Link>
           </h3>
         </div>
-        {/* <div
-          className="sidebar w-60 text-center absolute top-16 rounded shadow-xl z-10 bg-pink-400 right-0 p-5 transition-transform translate-x-full"
-        >
-          <h1 className=" font-semibold text-xl">Shopping Cart</h1>
-          <ol>
-            <li>
-              <div className="flex justify-between mt-4">
-                <h4>Tshirt green</h4>
-                <div className="flex ">
-                  <h1 className="bg-black w-7 text-center pt-0.5 cursor-pointer rounded text-md">
-                    <i className="fa-solid fa-minus"></i>
-                  </h1>
-                  <h1 className="mx-2 text-xl">2</h1>
-                  <h1 className="bg-black w-7 text-center pt-0.5 cursor-pointer text-md rounded">
-                    <i className="fa-solid fa-plus"></i>
-                  </h1>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div className="flex justify-between mt-4">
-                <h4>Tshirt green</h4>
-                <div className="flex ">
-                  <h1 className="bg-black w-7 text-center pt-0.5 cursor-pointer rounded text-md">
-                    <i className="fa-solid fa-minus"></i>
-                  </h1>
-                  <h1 className="mx-2 text-xl">2</h1>
-                  <h1 className="bg-black w-7 text-center pt-0.5 cursor-pointer text-md rounded">
-                    <i className="fa-solid fa-plus"></i>
-                  </h1>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div className="flex justify-between mt-4">
-                <h4>Tshirt green</h4>
-                <div className="flex ">
-                  <h1 className="bg-black w-7 text-center pt-0.5 cursor-pointer rounded text-md">
-                    <i className="fa-solid fa-minus"></i>
-                  </h1>
-                  <h1 className="mx-2 text-xl">2</h1>
-                  <h1 className="bg-black w-7 text-center pt-0.5 cursor-pointer text-md rounded">
-                    <i className="fa-solid fa-plus"></i>
-                  </h1>
-                </div>
-              </div>
-            </li>
-          </ol>
-          <button className="bg-gray-900 hover:bg-white hover:text-black font-semibold px-3 py-1 rounded-lg  mt-5">
-            Buy Now
-          </button>
-        </div> */}
       </div>
     </>
   );

@@ -12,7 +12,7 @@ import "swiper/css/scrollbar";
 const Craousel = () => {
   return (
     <>
-      <div className="bg-slate-200  shadow-slate-400 p-2">
+      <div className="bg-slate-300  shadow-slate-600 p-2">
         <Swiper
           // slidesPerView={1}
           spaceBetween={0}

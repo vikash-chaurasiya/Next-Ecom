@@ -28,9 +28,9 @@ const Category = ({ params }) => {
   return (
     <>
       <main className="text-black pt-5 px-24">
-        <h1 className="text-slate-500 font-medium text-4xl ml-3  mb-8">
+        <h1 className="text-slate-500 font-medium text-2xl ml-3  mb-8">
           Top offers on{" "}
-          <span className="capitalize text-pink-600"> {params.slug}</span>
+          <span className="capitalize text-pink-600 text-3xl"> {params.slug}</span>
         </h1>
         {!isSuccess ? (
           "server error"
@@ -46,7 +46,7 @@ const Category = ({ params }) => {
 
         <section className="pb-5">
           <div className="my-10 bg-red-950 text-white py-4 ps-5 rounded-lg">
-            <h2 className="font-medium text-xl">Our Trendiong Products 🔥</h2>
+            <h2 className="font-medium text-xl">Our Trending Products 🔥</h2>
           </div>
           {allProductRes.isLoading ? (
             <CardLoading />

@@ -64,15 +64,15 @@ const Notification = () => {
                   <div key={index} className="w-full">
                     <a
                       href="#"
-                      className="flex items-center px-4 py-3 -mx-2 transition-colors duration-300 transform border-b border-gray-100 hover:bg-gray-50 dark:hover:bg-gray-700 dark:border-gray-700"
+                      className="flex items-center px-4 py-2 -mx-2 transition-colors duration-300 transform border-b border-gray-100 hover:bg-gray-50 dark:hover:bg-gray-700 dark:border-gray-700"
                     >
                       <img
                         className="flex-shrink-0 object-cover w-12 h-12 mx-3 rounded-full"
                         src={item.thumbnail}
                         alt="product"
                       />
-                      <div className="ms-6 w-full">
-                        <p className="capitalize line-clamp-1">{item.title}</p>
+                      <div className="ms-3 w-full">
+                        <p className="capitalize text-sm line-clamp-1">{item.title}</p>
                         <p className=" text-sm text-gray-600 dark:text-white">
                           <span className="text-yellow-600 capitalize">
                             {item.message}
@@ -89,7 +89,7 @@ const Notification = () => {
 
             <button
               onClick={clearNotify}
-              className="py-2 font-bold text-center w-full text-white bg-gray-800 dark:bg-gray-700 hover:underline"
+              className="py-2 font-medium text-center w-full text-white bg-gray-800 dark:bg-gray-700 hover:underline"
             >
               Clear all notifications
             </button>

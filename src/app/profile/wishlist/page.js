@@ -80,9 +80,9 @@ const Wishlist = () => {
 
   return (
     <>
-      <main className="text-white ps-10 pt-8 min-h-screen min-w-full bg-gray-900 flex flex-col gap-8 pb-10">
+      <main className="text-white px-10 pt-5 min-h-full min-w-full bg-gray-900 flex flex-col gap-8 pb-10">
         <div className="h-full w-full ">
-          <h2 className="text-3xl font-semibold">My Wishlist</h2>
+          <h2 className="text-2xl font-medium">My Wishlist</h2>
         </div>
 
         {isLoading ? (
@@ -95,8 +95,8 @@ const Wishlist = () => {
               <>
                 <div className="flex justify-center items-center flex-col w-full h-96">
                   <img
-                    width="150"
-                    height="150"
+                    width="110"
+                    height="110"
                     src="https://img.icons8.com/nolan/256/wish-list.png"
                     alt="shopping-cart"
                   />
@@ -112,7 +112,7 @@ const Wishlist = () => {
                   return (
                     <div
                       key={index}
-                      className="max-w-4xl h-60 flex overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800"
+                      className="max-w-4xl h-52 flex overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800"
                     >
                       <div className="h-60 w-2/6 bg-red-600">
                         <img

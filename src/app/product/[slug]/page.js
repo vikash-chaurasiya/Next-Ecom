@@ -33,16 +33,16 @@ const Product = ({ params }) => {
       qty :  1,
       date : today,
     };
-    // const notify = {
-    //   title : item.title,
-    //   thumbnail : item.thumbnail,
-    //   date : todayDate,
-    //   message : "added to cart"
-    // }
+    const notify = {
+      title : item.title,
+      thumbnail : item.thumbnail,
+      date : todayDate,
+      message : "added to cart"
+    }
     dispatch(setCartData(sendData));
     dispatch(updateDiscount())
     dispatch(updateTotalPrice())
-    // dispatch(setNotification(notify))
+    dispatch(setNotification(notify))
 
     console.log(sendData);
   }

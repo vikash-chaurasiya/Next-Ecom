@@ -65,10 +65,10 @@ const Cart = () => {
           "Page error"
         ) : !cartDetails.length ? (
           <>
-            <div className="flex justify-center items-center flex-col w-full h-96 mt-14">
+            <div className="flex justify-center items-center flex-col w-full h-96 mt-8">
               <img
-                width="250"
-                height="250"
+                width="200"
+                height="200"
                 src="https://img.icons8.com/nolan/256/shopping-cart.png"
                 alt="shopping-cart"
               />
@@ -79,7 +79,7 @@ const Cart = () => {
             <section className="pb-10">
               <div className="my-10 bg-red-950 text-white py-4 ps-5 rounded-lg">
                 <h2 className="font-medium text-xl">
-                  Explore Our Trendiong Products 🔥
+                  Explore Our Trending Products 🔥
                 </h2>
               </div>
               <div className="grid grid-cols-4  gap-10">
@@ -93,7 +93,7 @@ const Cart = () => {
           </>
         ) : (
           <>
-            <div className="grid grid-cols-3">
+            <div className="grid grid-cols-3 gap-8">
               <section className="col-span-2">
                 {cartDetails?.length &&
                   cartDetails.map((product, index) => {
@@ -225,17 +225,17 @@ const Cart = () => {
                     );
                   })}
               </section>
-              <aside className="col-span-1">
+              <aside className="col-span-1 relative">
                 <div className="sticky top-20">
                   <div className="bg-gray-800 w-full mt-10 rounded-md ">
-                    <div className="border-b-2 border-b-slate-500 py-4 px-8 text-xl uppercase text-slate-300">
+                    <div className="border-b-2 border-b-slate-500 py-4 px-8 text-lg uppercase text-slate-300">
                       <h2>Price Details</h2>
                     </div>
-                    <div className="pt-6 pb-5 px-8 flex justify-between">
+                    <div className="pt-4 pb-5 px-8 flex justify-between">
                       <p>Price</p>
                       <p>₹ {cartTotalPrice}</p>
                     </div>
-                    <div className="pb-6 px-8 flex justify-between">
+                    <div className="pb-5 px-8 flex justify-between">
                       <p>Discount</p>
                       <p className="text-green-500">
                         - &nbsp; ₹ {cartTotalDiscount}
@@ -249,25 +249,25 @@ const Cart = () => {
                         <p>₹ 120</p>
                       )}
                     </div>
-                    <div className="pb-6 mx-8 flex justify-between text-xl mt-7 border-b-2 border-b-slate-600 border-dashed">
+                    <div className="pb-4 mx-8 flex justify-between text-xl mt-4 border-b-2 border-b-slate-600 border-dashed">
                       <h2>Total Amount</h2>
                       <h2>₹ {cartTotalPrice - cartTotalDiscount}</h2>
                     </div>
-                    <div className="py-4 px-8 text-green-500 font-medium">
+                    <div className="py-6 px-8 text-green-500 font-medium">
                       <p> You will save ₹ 3434 in this order</p>
                     </div>
                   </div>
                   <div className="flex gap-3 mt-8">
                     <p className="text-slate-500">
-                      <AiOutlineSafety size={34} />
+                      <AiOutlineSafety size={30} />
                     </p>{" "}
-                    <p className="text-slate-500">
+                    <p className="text-slate-500 text-sm">
                       Safe and Secure Payments.Easy returns.100% Authentic
                       products.
                     </p>
                   </div>
                   <div className="pb-10">
-                    <button className="uppercase w-full h-12 bg-green-500 hover:bg-green-600 text-white text-lg mt-7 tracking-wider rounded-md font-medium">
+                    <button className="uppercase w-full h-12 bg-green-600 hover:bg-green-500 text-white text-lg mt-7 tracking-wider rounded-md font-medium">
                       Buy Now
                     </button>
                   </div>

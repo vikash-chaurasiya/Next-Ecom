@@ -11,8 +11,8 @@ const Footer = () => {
               href={"/"}
               className="flex title-font font-medium items-center md:justify-start justify-center text-white"
             >
-              <img src="flipkart-icon.svg" alt="icon" className="w-7" />
-              <span className="ml-3 text-xl">Flipkart</span>
+              <img src="/flipkart-icon.svg" alt="icon" className="w-7" />
+              <span className="ml-3 text-xl">FlashCart</span>
             </Link>
 
             <p className="mt-2 text-sm text-gray-500">
@@ -33,12 +33,12 @@ const Footer = () => {
                 </li>
                 <li>
                   <a className="text-gray-400 hover:text-white">
-                    Flipkart Stores
+                    FlashCart Stores
                   </a>
                 </li>
                 <li>
                   <a className="text-gray-400 hover:text-white">
-                    Flipkart Wholesale
+                    FlashCart Wholesale
                   </a>
                 </li>
               </nav>
@@ -90,7 +90,7 @@ const Footer = () => {
                 Registerd Office Address:
               </h2>
               <p className="leading-6 text-sm ">
-                Flipkart Internet Private Limited, Buildings Alyssa, Begonia &
+                FlashCart Internet Private Limited, Buildings Alyssa, Begonia &
                 Clove Embassy Tech Village, Outer Ring Road,Bengaluru, 560103,
                 Karnataka, India
               </p>
@@ -101,14 +101,14 @@ const Footer = () => {
         <div className="bg-gray-800 bg-opacity-75">
           <div className="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
             <p className="text-gray-400 text-sm text-center sm:text-left">
-              © 2020 Flipkart —
+              © 2020 FlashCart —
               <a
                 href="https://twitter.com/knyttneve"
                 rel="noopener noreferrer"
                 className="text-gray-500 ml-1"
                 target="_blank"
               >
-                @Flipkart
+                @FlashCart
               </a>
             </p>
             <span className="inline-flex sm:ml-auto sm:mt-0 mt-2 justify-center sm:justify-start">

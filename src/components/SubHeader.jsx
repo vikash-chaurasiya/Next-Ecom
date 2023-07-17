@@ -16,7 +16,7 @@ const SubHeader = () => {
 
   return (
     <>
-      <main className="bg-white h-14 w-full px-14 border-b-2 border-slate-200" onClick={closeDropdown}>
+      <main className="bg-white h-11 w-full px-14 border-b-2 border-slate-200">
         <ul className="flex items-center text-sm  h-full justify-between text-slate-800 font-semibold ">
           <li>
             <Link href="category/groceries">
@@ -37,7 +37,7 @@ const SubHeader = () => {
             <h6
               className="hover:text-blue-600 cursor-pointer flex "
               onClick={toggleDropdown}
-              onMouseEnter={toggleDropdown}
+              // onMouseEnter={toggleDropdown}
               // onMouseLeave={closeDropdown}
             >
               Fashion
@@ -62,51 +62,51 @@ const SubHeader = () => {
                 onMouseLeave={closeDropdown}
                 className="absolute -right-10 z-20 w-64 py-2 mt-4 origin-top-right bg-white rounded-md shadow-md shadow-slate-600 border"
               >
-                <p className="block px-7 py-3 text-base  text-gray-800 border-b-2 capitalize transition-colors duration-300 transform  hover:bg-gray-100 ">
+                <p className="block px-7 py-3 text-sm  text-gray-800 border-b-2 capitalize transition-colors duration-300 transform  hover:bg-gray-100 ">
                   Mens Clothing
                 </p>
                 <Link
                   href="category/mens-shirts"
-                  className="block px-7 py-3 text-sm  text-slate-600 border-b-2 capitalize transition-colors duration-300 transform  hover:bg-gray-100 "
+                  className="block px-7 py-3 text-xs  text-slate-600 border-b-2 capitalize transition-colors duration-300 transform  hover:bg-gray-100 "
                 >
                   mens-shirts
                 </Link>
                 <Link
                   href="category/mens-shoes"
-                  className="block px-7 py-3 text-sm  text-slate-600 border-b-2 capitalize transition-colors duration-300 transform  hover:bg-gray-100 "
+                  className="block px-7 py-3 text-xs  text-slate-600 border-b-2 capitalize transition-colors duration-300 transform  hover:bg-gray-100 "
                 >
                   mens-shoes
                 </Link>
                 <Link
                   href="category/mens-watches"
-                  className="block px-7 py-3 text-sm  text-slate-600 border-b-2 capitalize transition-colors duration-300 transform  hover:bg-gray-100 "
+                  className="block px-7 py-3 text-xs  text-slate-600 border-b-2 capitalize transition-colors duration-300 transform  hover:bg-gray-100 "
                 >
                   mens-watches
                 </Link>
-                <p className="block px-7 py-3 text-base  text-slate-900 border-b-2 capitalize transition-colors duration-300 transform  hover:bg-gray-100 ">
+                <p className="block px-7 py-3 text-sm  text-slate-900 border-b-2 capitalize transition-colors duration-300 transform  hover:bg-gray-100 ">
                   Womens Clothing
                 </p>
                 <Link
                   href="category/womens-dresses"
-                  className="block px-7 py-3 text-sm  text-slate-600 border-b-2 capitalize transition-colors duration-300 transform  hover:bg-gray-100 "
+                  className="block px-7 py-3 text-xs  text-slate-600 border-b-2 capitalize transition-colors duration-300 transform  hover:bg-gray-100 "
                 >
                   womens-dresses
                 </Link>
                 <Link
                   href="category/womens-shoes"
-                  className="block px-7 py-3 text-sm  text-slate-600 border-b-2 capitalize transition-colors duration-300 transform  hover:bg-gray-100 "
+                  className="block px-7 py-3 text-xs  text-slate-600 border-b-2 capitalize transition-colors duration-300 transform  hover:bg-gray-100 "
                 >
                   womens-shoes
                 </Link>
                 <Link
                   href="category/womens-watches"
-                  className="block px-7 py-3 text-sm  text-slate-600 border-b-2 capitalize transition-colors duration-300 transform  hover:bg-gray-100 "
+                  className="block px-7 py-3 text-xs  text-slate-600 border-b-2 capitalize transition-colors duration-300 transform  hover:bg-gray-100 "
                 >
                   womens-watches
                 </Link>
                 <Link
                   href="category/womens-bags"
-                  className="block px-7 py-3 text-sm  text-slate-600  capitalize transition-colors duration-300 transform  hover:bg-gray-100 "
+                  className="block px-7 py-3 text-xs  text-slate-600  capitalize transition-colors duration-300 transform  hover:bg-gray-100 "
                 >
                   womens-bags
                 </Link>
