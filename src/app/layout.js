@@ -4,6 +4,7 @@ import "../styles/globals.css";
 import { Inter } from "next/font/google";
 import { Providers } from "@/toolkit/provider";
 import SubHeader from "@/components/SubHeader";
+import Developement from "@/components/developement";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,7 +24,7 @@ export default function RootLayout({ children }) {
             </div>
             <div className="mt-16">
             <SubHeader />
-
+            <Developement/>
             </div>
             {children}
             <Footer />
