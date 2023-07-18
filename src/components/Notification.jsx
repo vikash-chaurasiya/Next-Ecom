@@ -1,6 +1,6 @@
 "use client";
 import { clearNotification } from "@/toolkit/notifySlice";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const Notification = () => {
@@ -14,12 +14,20 @@ const Notification = () => {
     dispatch(clearNotification());
   };
 
+  const isFirstRender = useRef(true);
+
   useEffect(() => {
+
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+
     if (notification) {
       setHighlight(true);
       const timer = setTimeout(() => {
         setHighlight(false);
-      }, 10000);
+      }, 8000);
 
       return () => clearTimeout(timer);
     }
@@ -32,11 +40,11 @@ const Notification = () => {
           onClick={() => setIsOpen(!isOpen)}
           className={`${
             highlight &&
-            "animate-pulse ring-red-500 border-red-500 ring-opacity-40 ring"
+            "animate-pulse ring-red-500 border-red-500 ring-opacity-80 ring"
           } relative z-10 block p-2 text-gray-700  border border-transparent rounded-md dark:text-white focus:border-blue-500 focus:ring-opacity-40 dark:focus:ring-opacity-40 focus:ring-blue-300 dark:focus:ring-blue-400 focus:ring dark:bg-gray-800 focus:outline-none`}
         >
           <svg
-            className="w-5 h-5 text-gray-800 dark:text-white"
+            className={`w-5 h-5 text-gray-800 dark:text-white ${highlight && 'animate-bell-rotate'}`}
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"

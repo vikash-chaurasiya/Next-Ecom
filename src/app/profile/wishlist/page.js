@@ -66,7 +66,10 @@ const Wishlist = () => {
     dispatch(setCartData(sendData));
     dispatch(updateDiscount());
     dispatch(updateTotalPrice());
-    // dispatch(setNotification(notify))
+    dispatch(setNotification(notify))
+
+    let tune  = new Audio('/tune.mp3');
+    tune.play();
 
     console.log(sendData);
   };

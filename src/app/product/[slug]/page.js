@@ -1,6 +1,7 @@
 "use client";
 import { useGetProductByIdQuery } from "@/toolkit/apiSlice";
 import { setCartData, updateDiscount, updateTotalPrice } from "@/toolkit/cartSlice";
+import { setNotification } from "@/toolkit/notifySlice";
 import { setWatchlist } from "@/toolkit/watchlistSlice";
 import { priceWithoutOffer } from "@/utils/commonFunc";
 import React from "react";
@@ -36,7 +37,7 @@ const Product = ({ params }) => {
     const notify = {
       title : item.title,
       thumbnail : item.thumbnail,
-      date : todayDate,
+      date : today,
       message : "added to cart"
     }
     dispatch(setCartData(sendData));
@@ -44,11 +45,16 @@ const Product = ({ params }) => {
     dispatch(updateTotalPrice())
     dispatch(setNotification(notify))
 
+    let tune  = new Audio('/tune.mp3');
+    tune.play();
+
     console.log(sendData);
   }
 
   const addToWhislist = (id) => {
     dispatch(setWatchlist(id));
+    let tune  = new Audio('/tune.mp3');
+    tune.play();
   }
 
   return (
@@ -78,7 +84,7 @@ const Product = ({ params }) => {
                 <h2 className="mb-4 mt-1 text-base title-font text-gray-500 tracking-widest capitalize">
                   {data.brand}
                 </h2>
-                <h1 className="mb-5 text-gray-100 text-3xl title-font font-medium mb-1">
+                <h1 className="mb-5 text-gray-100 text-2xl title-font font-medium">
                   {data.title}
                 </h1>
                 <div className="flex mb-6 mt-2">

@@ -9,6 +9,7 @@ import { profileSlice } from "./userdetailsSlice";
 import { watchlistSlice } from "./watchlistSlice";
 import { notifySlice } from "./notifySlice";
 import { cart2Slice } from "./cartSlice";
+import { orderSlice } from "./orderSlice";
 
 
 const persistConfig = {
@@ -24,6 +25,7 @@ const rootReducer = combineReducers({
   watchlist :persistReducer(persistConfig,watchlistSlice.reducer),
   notification : persistReducer(persistConfig,notifySlice.reducer),
   cartData : persistReducer(persistConfig,cart2Slice.reducer),
+  orderData : persistReducer(persistConfig,orderSlice.reducer),
   [productApi.reducerPath]: productApi.reducer,
 })
 

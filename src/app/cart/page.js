@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { priceWithoutOffer, shuffleArray } from "@/utils/commonFunc";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  clearCartItems,
   removeCartItem,
   updateDiscount,
   updateProductQty,
@@ -11,8 +12,12 @@ import {
 } from "@/toolkit/cartSlice";
 import { AiOutlineSafety } from "react-icons/ai";
 import ProductCard from "@/components/ProductCard";
+import Link from "next/link";
+import { setOrderData } from "@/toolkit/orderSlice";
+import { setNotification } from "@/toolkit/notifySlice";
 
 const Cart = () => {
+
   const dispatch = useDispatch();
   const cartDetails = useSelector((state) => state.cartData.cartData);
   const cartTotalPrice = useSelector((state) => state.cartData.totalPrice);
@@ -24,7 +29,6 @@ const Cart = () => {
   const [allProducts, setAllProducts] = useState([]);
 
   function deliveryDate(apiDate) {
-
     let random = Math.floor(Math.random() * 9) + 4;
     const parseDate = new Date(apiDate);
     parseDate.setDate(parseDate.getDate() + random);
@@ -33,6 +37,10 @@ const Cart = () => {
 
     return futureDateString;
   }
+
+  const today = new Date().toLocaleDateString("en-Gb")
+
+  console.log("data",cartDetails)
 
   const removeProduct = (id) => {
     console.log("id", id);
@@ -48,6 +56,28 @@ const Cart = () => {
       dispatch(updateDiscount());
     }
   };
+
+  const handleOrder = () => {
+    const sendData = {
+      [today] : cartDetails
+    }
+
+    const notify = {
+      title: 'Order placed',
+      thumbnail: "",
+      date: today,
+      message: "Your order succesful",
+    };
+
+    dispatch(setOrderData(sendData));
+    dispatch(clearCartItems());
+    dispatch(setNotification(notify))
+
+
+    let tune  = new Audio('/tune.mp3');
+    tune.play();
+    console.log("send data ",sendData)
+  }
 
   useEffect(() => {
     if (isSuccess) {
@@ -73,8 +103,12 @@ const Cart = () => {
                 alt="shopping-cart"
               />
 
-              <h2 className="mt-3 mb-3 text-xl text-gray-400">Your <span className="text-yellow-500">Cart</span>  is empty !</h2>
-              <p className="text-slate-400">Explore our wide selection and find something you like</p>
+              <h2 className="mt-3 mb-3 text-xl text-gray-400">
+                Your <span className="text-yellow-500">Cart</span> is empty !
+              </h2>
+              <p className="text-slate-400">
+                Explore our wide selection and find something you like
+              </p>
             </div>
             <section className="pb-10">
               <div className="my-10 bg-red-950 text-white py-4 ps-5 rounded-lg">
@@ -100,7 +134,7 @@ const Cart = () => {
                     return (
                       <div
                         key={index}
-                        className="max-w-4xl h-60  my-10 flex overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800"
+                        className="max-w-4xl h-52 my-10 flex overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800"
                       >
                         <div className="h-60 w-2/6 bg-red-600">
                           <img
@@ -267,9 +301,11 @@ const Cart = () => {
                     </p>
                   </div>
                   <div className="pb-10">
-                    <button className="uppercase w-full h-12 bg-green-600 hover:bg-green-500 text-white text-lg mt-7 tracking-wider rounded-md font-medium">
-                      Buy Now
-                    </button>
+                    <Link href="/order">
+                      <button onClick={handleOrder} className="uppercase w-full h-12 bg-green-600 hover:bg-green-500 text-white text-lg mt-7 tracking-wider rounded-md font-medium">
+                        Buy Now
+                      </button>
+                    </Link>
                   </div>
                 </div>
               </aside>

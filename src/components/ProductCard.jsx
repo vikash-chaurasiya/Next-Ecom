@@ -52,6 +52,8 @@ const ProductCard = ({ data, isLoading }) => {
       }
       dispatch(setNotification(notify));
     }
+    let tune  = new Audio('/tune.mp3');
+    tune.play();
     console.log("all product", watchlistId);
   };
 
@@ -80,6 +82,9 @@ const ProductCard = ({ data, isLoading }) => {
     dispatch(updateDiscount());
     dispatch(updateTotalPrice());
     dispatch(setNotification(notify));
+
+    let tune  = new Audio('/tune.mp3');
+    tune.play();
 
     console.log("data send ", sendData);
   };
