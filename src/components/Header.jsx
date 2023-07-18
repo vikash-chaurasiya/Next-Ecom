@@ -29,7 +29,7 @@ const Header = () => {
         <Link href={"/"}>
           <div className="logo flex gap-3 cursor-pointer pt-1">
             <Image src="/flipkart-icon.svg" alt="logo" width={24} height={80} />
-            <span className="text-1xl font">Flipkart</span>
+            <span className="text-1xl font">FlashCart</span>
           </div>
         </Link>
         <div className="nav w-2/5">
