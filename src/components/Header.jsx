@@ -1,23 +1,55 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-import { HiOutlineUserCircle } from "react-icons/hi";
 import { BsBookmarkHeart, BsBoxSeamFill } from "react-icons/bs";
-import { BiLogOut } from "react-icons/bi";
-import { IoIosArrowDown } from "react-icons/io";
 import Notification from "./Notification";
 import "../styles/globals.css";
 import { logout } from "@/toolkit/userSlice";
+import { useGetSearchProductQuery } from "@/toolkit/apiSlice";
+import { handleChange } from "@/utils/commonFunc";
+
+const debounce = (cb, d) => {
+  let timer;
+  return function (...args) {
+    if (timer) clearTimeout(timer);
+    timer = setTimeout(() => {
+      cb(...args);
+    }, d);
+  };
+};
 
 const Header = () => {
+  const [search, setSearch] = useState("");
+  const [active, setActive] = useState(false);
+  const [listShow, setListShow] = useState(false);
+
   const user = useSelector((state) => state.user);
+  const { data, isLoading, isSuccess } = useGetSearchProductQuery(search);
   const cartDetails = useSelector((state) => state.cartData.cartData);
   const dispatch = useDispatch();
 
-  const [active, setActive] = useState(false);
+  console.log("this is search data", search, " adn this is data ", data);
+
+  const handleChange = debounce((e) => {
+    setListShow(true)
+    setSearch(e.target.value);
+  }, 1000);
+
+
+  const handleFocus = () => {
+
+    setListShow(true)
+  }
+
+
+  const handleBlur = () => {
+    setTimeout(() => {
+      setListShow(false);
+    }, 1000);
+  };
 
   const handleLogout = () => {
     dispatch(logout());
@@ -32,7 +64,9 @@ const Header = () => {
             <span className="text-1xl font">FlashCart</span>
           </div>
         </Link>
-        <div className="nav w-2/5">
+        <div className="nav w-2/5 relative"
+
+        >
           <label className="relative block">
             <span className="absolute inset-y-0 top-1 left-2 flex items-center pl-2">
               <svg
@@ -50,9 +84,30 @@ const Header = () => {
               className="placeholder:italic text-black placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-10 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
               placeholder="Search for products..."
               type="text"
-              name="search"
+              name={"search"}
+              onChange={handleChange}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+              autoComplete="off"
             />
           </label>
+          {!!data?.products?.length && listShow && (
+            <div className="absolute top-full left-0 z-10 w-full bg-white text-black mt-2 border border-slate-300 shadow-md rounded-md max-h-56 overflow-y-auto">
+              <ul className="list-none p-0 m-0">
+                {data.products.slice(0, 5).map((product) => (
+                  <li
+                    key={product.id}
+                    className="px-4 py-2 border-b border-slate-300 "
+                  >
+                    <Link href={`product/${product.id}`} onClick={()=>setListShow(false)} className="flex justify-between">
+                      <span className="mr-2 w-6/6" onClick={()=>console.log("ted")}>{product.title}</span>
+                      <span className="text-green-700">₹ {product.price}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
         <div className="flex gap-5 justify-center align-middle cursor-pointer">
           {!user.isAuthenticated ? (

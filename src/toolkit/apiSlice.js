@@ -22,13 +22,25 @@ export const productApi = createApi({
         method: "GET",
       }),
     }),
-    getProductById : builder.query({
-      query : (id) => ({
-        url : `/${id}`,
-        method : "GET"
-      })
-    })
+    getProductById: builder.query({
+      query: (id) => ({
+        url: `/${id}`,
+        method: "GET",
+      }),
+    }),
+    getSearchProduct: builder.query({
+      query: (data) => ({
+        url: `/search?q=${data}`,
+        method: "GET",
+      }),
+    }),
   }),
 });
 
-export const { useGetAllProductQuery, useGetAllCategoryQuery, useGetProductByCategoryQuery, useGetProductByIdQuery } = productApi;
+export const {
+  useGetSearchProductQuery,
+  useGetAllProductQuery,
+  useGetAllCategoryQuery,
+  useGetProductByCategoryQuery,
+  useGetProductByIdQuery,
+} = productApi;
