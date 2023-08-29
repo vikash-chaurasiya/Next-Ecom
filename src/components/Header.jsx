@@ -34,16 +34,13 @@ const Header = () => {
   console.log("this is search data", search, " adn this is data ", data);
 
   const handleChange = debounce((e) => {
-    setListShow(true)
+    setListShow(true);
     setSearch(e.target.value);
   }, 1000);
 
-
   const handleFocus = () => {
-
-    setListShow(true)
-  }
-
+    setListShow(true);
+  };
 
   const handleBlur = () => {
     setTimeout(() => {
@@ -57,16 +54,14 @@ const Header = () => {
 
   return (
     <>
-      <div className="flex px-20 py-3 justify-between shadow-xl bg-gray-900">
+      <div className="flex lg:px-20 md:px-10 px-10  py-3 justify-between shadow-xl bg-gray-900">
         <Link href={"/"}>
           <div className="logo flex gap-3 cursor-pointer pt-1">
             <Image src="/flipkart-icon.svg" alt="logo" width={24} height={80} />
             <span className="text-1xl font">FlashCart</span>
           </div>
         </Link>
-        <div className="nav w-2/5 relative"
-
-        >
+        <div className="nav w-2/5 relative">
           <label className="relative block">
             <span className="absolute inset-y-0 top-1 left-2 flex items-center pl-2">
               <svg
@@ -99,8 +94,17 @@ const Header = () => {
                     key={product.id}
                     className="px-4 py-2 border-b border-slate-300 "
                   >
-                    <Link href={`product/${product.id}`} onClick={()=>setListShow(false)} className="flex justify-between">
-                      <span className="mr-2 w-6/6" onClick={()=>console.log("ted")}>{product.title}</span>
+                    <Link
+                      href={`product/${product.id}`}
+                      onClick={() => setListShow(false)}
+                      className="flex justify-between"
+                    >
+                      <span
+                        className="mr-2 w-6/6"
+                        onClick={() => console.log("ted")}
+                      >
+                        {product.title}
+                      </span>
                       <span className="text-green-700">₹ {product.price}</span>
                     </Link>
                   </li>

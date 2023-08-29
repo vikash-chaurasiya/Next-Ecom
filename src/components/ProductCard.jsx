@@ -100,7 +100,7 @@ const ProductCard = ({ data, isLoading }) => {
       {isLoading ? (
         <CardLoading />
       ) : (
-        <main className="dark:bg-gray-900 bg-white text-white mx-2 shadow-md h-full rounded-md">
+        <main className="dark:bg-gray-900 bg-white text-white  w-full mx-2 shadow-md h-full rounded-md">
           <div>
             <div className="h-56 w-full rounded-md object-fill relative">
               <div
